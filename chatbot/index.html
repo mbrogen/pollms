@@ -83,6 +83,22 @@
   .msg-meta { display: flex; align-items: center; gap: 6px; margin-top: 6px;
               font-family: var(--mono); font-size: 11px; color: var(--text3); }
   .meta-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
+  .button {
+    border: #1c1f26;
+    border-radius: 25px;
+    background-color: #242830;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: grid;
+    position: absolute;
+    top: 88.5%;
+    left: 92%;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 
   /* ---------- Composer ---------- */
   .composer { flex-shrink: 0; border-top: 1px solid var(--border); padding: 16px 24px 18px; }
@@ -249,6 +265,7 @@
         <div class="disclaimer">Responses are AI-generated and may be inaccurate.</div>
       </div>
     </div>
+    <button class="button"> Clear </button>
   </main>
 
   <div class="toast" id="toast"></div>
@@ -413,7 +430,7 @@
       lights.forEach(l => {
 	  const level = parseInt(l.dataset.level, 10);
 	  // light up only the selected score, and only while generating
-	  if (isStreaming && level === EFFICIENCY_SCORE) {
+	  if (level === EFFICIENCY_SCORE) {
 	      l.classList.add("on");
 	  } else {
 	      l.classList.remove("on");
