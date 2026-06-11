@@ -33,15 +33,16 @@
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column; padding: 20px;
   }
-  .sidebar h1 { font-size: 15px; font-weight: 600; margin-bottom: 24px; }
+  .sidebar h1 { font-size: 25px; font-weight: 600; margin-bottom: 24px; }
+  .sidebar h4 { font-size: 22px; font-weight: 700; text-align: center}
   .panel { background: var(--surface2); border: 1px solid var(--border);
            border-radius: 10px; padding: 14px; margin-bottom: 14px; }
   .panel h4 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
-              color: var(--text3); font-family: var(--mono); margin-bottom: 10px; }
-  .eco-row { display: flex; justify-content: space-between; align-items: center;
-             padding: 5px 0; font-size: 13px; }
-  .eco-key { color: var(--text2); font-family: var(--mono); font-size: 12px; }
-  .eco-val { color: var(--text); font-family: var(--mono); font-size: 12px; transition: color .25s, opacity .25s; }
+              color: var(--text3); font-family: var(--font); margin-bottom: 10px; }
+  .eco-row { display: flex; justify-content: center; align-items: center;
+             padding: 5px 0; font-size: 20px; text-align: center; font-family: var(--font)}
+  .eco-key { color: var(--text2); font-family: var(--mono); font-size: 15px; text-align: center }
+  .eco-val { color: var(--text); font-family: var(--mono); font-size: 15px; transition: color .25s, opacity .25s; text-align: center}
   .eco-row.dim  { opacity: .35; transition: opacity .25s; }
   .eco-row.live { opacity: 1;   transition: opacity .25s; }
   .eco-val.pulse  { color: var(--green);  font-weight: 600; }
@@ -109,10 +110,10 @@
   /* ---------- Efficiency traffic lights ---------- */
   .traffic { display: flex; gap: 6px; align-items: center; }
   .light {
-  width: 14px; height: 14px; border-radius: 50%;
+  width: 16px; height: 16px; border-radius: 50%;
   border: 1px solid var(--border);
   transition: background .25s, opacity .25s, box-shadow .25s;
-  opacity: .4;                            /* dimmed but color shows */
+  opacity: .4; align-items: center               /* dimmed but color shows */
   }
   .light[data-level="1"] { background: #22c55e; }
   .light[data-level="2"] { background: #84cc16; }
@@ -144,32 +145,48 @@
   <aside class="sidebar">
     <h1>MochiAI</h1>
 
-    <div class="panel">
-      <h4>session</h4>
+      <h4>Session Stats</h4>
       <div class="eco-row">
-        <span class="eco-key">tokens generated</span>
-        <span class="eco-val highlight" id="tt-tokens">0</span>
+        Tokens Generated
       </div>
-      <div class="eco-row">
-        <span class="eco-key">word count</span>
-        <span class="eco-val highlight" id="tt-tokens">0</span>
-      </div>
-        <div class="eco-row">
-        <span class="eco-key">miles driven</span>
-        <span class="eco-val highlight" id="tt-tokens">0</span>
-      </div>
-      <div class="eco-row dim" id="row-idle">
-        <span class="eco-key">idle power</span>
-        <span class="eco-val" id="tt-idle">—</span>
-      </div>
-      <div class="eco-row dim" id="row-active">
-        <span class="eco-key">active power</span>
-        <span class="eco-val" id="tt-active">—</span>
-      </div>
-    </div>
+      <span class="eco-val highlight" id="tt-tokens">0</span>
+      <br>
 
-    <div class="panel">
-    <h4>eco-efficiency score</h4>
+      <div class="eco-row">
+        Prompt Word Count
+      </div>
+      <span class="eco-val highlight" id="tt-tokens">0</span>
+      <br>
+
+      <div class="eco-row">
+        Response Word Count
+      </div>
+      <span class="eco-val highlight" id="tt-tokens">0</span>
+      <br>
+
+      <!-- Trees consumed-->
+      <div class="eco-row">
+            Trees to Offset Carbon
+          </div>
+      <br>
+      <span class="eco-val highlight" id="tt-tokens">0</span>
+      <br>
+
+      <div class="eco-row dim" id="row-idle">
+        Idle Power
+      </div>
+      <span class="eco-val" id="tt-idle">—</span>
+      <br>
+
+      <div class="eco-row dim" id="row-active">
+        Active Power
+      </div>
+      <span class="eco-val" id="tt-active">—</span>
+      <br>
+
+    <div class="eco-row" id="row-active">
+        Eco-efficiency Score
+      </div>
     <div class="eco-row dim" id="row-eff">
 	  <div class="traffic" id="traffic">
 	  <!-- set EFFICIENCY_SCORE (1-5) in JS to choose which light to display -->
@@ -180,11 +197,15 @@
         <span class="light" data-level="5"></span>
 	  </div>
     </div>
-    </div>
+    <br>
+    <span class="eco-key">Quality * Metric </span>
+    <br>
+    <br>
 
   <!-- Try GPU-Efficiency score-->
-  <div class="panel">
-  <h4>Operating Speed</h4>
+  <div class="eco-row" id="row-active">
+        Operating Speed
+  </div>
   <div class="eco-row dim" id="row-eff">
 	<div class="traffic" id="traffic">
 	  <!-- set EFFICIENCY_SCORE (1-5) in JS to choose which light to display -->
@@ -194,6 +215,12 @@
         <span class="light" data-level="4"></span>
         <span class="light" data-level="5"></span>
   </div>
+  </div>
+  <br>
+  <span class="eco-key">Quality * Metric </span>
+  <br>
+  <br>
+
   </div>
   </div>
 
