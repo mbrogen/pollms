@@ -84,20 +84,18 @@
               font-family: var(--mono); font-size: 11px; color: var(--text3); }
   .meta-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
   .button {
-    border: #1c1f26;
+    border: #0c0e12;
     border-radius: 25px;
-    background-color: #242830;
+    background-color: #313642;
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: grid;
-    position: absolute;
-    top: 88.5%;
-    left: 92%;
-    font-size: 16px;
-    margin: 4px 2px;
+    flex-shrink: 0; 
+    width: 60px; 
+    height: 40px; 
+    border-radius: 9px; 
     cursor: pointer;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
   }
 
   /* ---------- Composer ---------- */
@@ -113,7 +111,7 @@
              background: var(--green); color: #06210f; cursor: pointer;
              display: flex; align-items: center; justify-content: center; transition: background .2s; }
   #sendBtn.streaming { background: var(--red); color: #fff; }
-  #sendBtn:disabled { background: var(--surface2); color: var(--text3); cursor: not-allowed; }
+  #sendBtn:disabled { background: #313642; color: var(--text3); cursor: not-allowed; }
   .disclaimer { text-align: center; font-size: 12px; color: var(--text3);
                 margin-top: 8px; font-family: var(--font); }
 
@@ -131,18 +129,18 @@
   transition: background .25s, opacity .25s, box-shadow .25s;
   opacity: .4; align-items: center               /* dimmed but color shows */
   }
-  .light[data-level="1"] { background: #22c55e; }
-  .light[data-level="2"] { background: #84cc16; }
+  .light[data-level="1"] { background: #ef4444; }
+  .light[data-level="2"] { background: #f97316; }
   .light[data-level="3"] { background: #eab308; }
-  .light[data-level="4"] { background: #f97316; }
-  .light[data-level="5"] { background: #ef4444; }
+  .light[data-level="4"] { background: #84cc16; }
+  .light[data-level="5"] { background: #22c55e; }
   
   /* lit state: full opacity + glow matching its own color */
-  .light[data-level="1"].on { opacity: 1; box-shadow: 0 0 7px #22c55e; }
-  .light[data-level="2"].on { opacity: 1; box-shadow: 0 0 7px #84cc16; }
+  .light[data-level="1"].on { opacity: 1; box-shadow: 0 0 7px #ef4444; }
+  .light[data-level="2"].on { opacity: 1; box-shadow: 0 0 7px #f97316; }
   .light[data-level="3"].on { opacity: 1; box-shadow: 0 0 7px #eab308; }
-  .light[data-level="4"].on { opacity: 1; box-shadow: 0 0 7px #f97316; }
-  .light[data-level="5"].on { opacity: 1; box-shadow: 0 0 7px #ef4444; }
+  .light[data-level="4"].on { opacity: 1; box-shadow: 0 0 7px #84cc16; }
+  .light[data-level="5"].on { opacity: 1; box-shadow: 0 0 7px #22c55e; }
 
   /* lit + pulsing while generating */
   .light.on {
@@ -258,14 +256,16 @@
     <div class="composer">
       <div class="composer-inner">
         <div class="input-wrap">
-          <textarea id="input" rows="2" placeholder="Message…"
+          <textarea id="input" rows="4" placeholder="Message…"
                     oninput="autoResize(this)" onkeydown="handleKey(event)"></textarea>
-          <button id="sendBtn" disabled onclick="onSendClick()" aria-label="Send"></button>
+          <div style="display: flex; flex-direction: column; gap: 10px; max-width: 200px;"> 
+            <button style="margin-left: 25px" id="sendBtn" disabled onclick="onSendClick()" aria-label="Send"></button>
+            <button class="button"> Clear </button>
+          </div>
         </div>
         <div class="disclaimer">Responses are AI-generated and may be inaccurate.</div>
       </div>
     </div>
-    <button class="button"> Clear </button>
   </main>
 
   <div class="toast" id="toast"></div>
